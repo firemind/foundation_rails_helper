@@ -14,11 +14,12 @@ module FoundationRailsHelper
     end
 
     def check_box(attribute, options = {}, checked_value = "1", unchecked_value = "0")
-      custom_label(attribute, options[:label], options[:label_options]) do
-        options.delete(:label)
-        options.delete(:label_options)
+      #custom_label(attribute, options[:label], options[:label_options]) do
+        #options.delete(:label)
+        #options.delete(:label_options)
         super(attribute, options, checked_value, unchecked_value)
-      end + error_and_hint(attribute, options)
+      #end
+      super(attribute, options, checked_value, unchecked_value) + error_and_hint(attribute, options)
     end
 
     def radio_button(attribute, tag_value, options = {})
@@ -105,12 +106,12 @@ module FoundationRailsHelper
 
     def field(attribute, options, &block)
       html = ''.html_safe
-      html = custom_label(attribute, options[:label], options[:label_options]) if false != options[:label]
+      #html = custom_label(attribute, options[:label], options[:label_options]) if false != options[:label]
       options[:class] ||= "medium"
       options[:class] = "#{options[:class]} input-text"
       options[:class] += " error" if has_error?(attribute)
-      options.delete(:label)
-      options.delete(:label_options)
+      #options.delete(:label)
+      #options.delete(:label_options)
       html += yield(options)
       html += error_and_hint(attribute, options)
     end
